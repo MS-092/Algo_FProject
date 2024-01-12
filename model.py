@@ -101,7 +101,7 @@ app.layout = html.Div([
     # Choosing model algorithms
     html.H2(
         'Now here I have provided you some model algorithms playground for you to play'),
-    html.H3('Here you can use the playground to learn and know about what are models of the algorithms'),
+    html.H3('Here you can choose any provided model algorithms, with your own custom dataset'),
     html.P("Select model:"),
     dcc.Dropdown(
         id='ml-regression-x-dropdown',
