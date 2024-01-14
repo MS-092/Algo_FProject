@@ -1,6 +1,5 @@
 from dash import Dash, dcc, html, dash_table, Input, Output, State, callback
 from sklearn.model_selection import train_test_split
-# linear regression, decision tree, K-Neighbors
 from sklearn import linear_model, tree, neighbors
 import plotly.graph_objects as go
 import pandas as pd
@@ -8,7 +7,7 @@ import numpy as np
 import base64
 import io
 import datetime
-from sklearn.ensemble import RandomForestRegressor  # Random forest
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from scipy.stats import pearsonr
 from dash.exceptions import PreventUpdate
@@ -138,8 +137,6 @@ app.layout = html.Div([
 
 # Parse upload files, getting the information of the data
 # Based on the type of file being uploaded
-
-
 def parse_contents(contents, filename, date):
     # This check ensures that there is a comma in the contents to split
     if ',' in contents:
@@ -212,6 +209,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
 )
 def train_and_display(name, contents):
     if contents is None:
+        # If there is no data uploaded
         raise PreventUpdate
     else:
       content_type, content_string = contents.split(',')
@@ -222,6 +220,7 @@ def train_and_display(name, contents):
       feature_col = df.columns[0]
       target_col = df.columns[1]
 
+      # Dataframe is being split as part of the function
       X = df[feature_col].values[:, None]
       X_train, X_test, y_train, y_test = train_test_split(
           X, df[target_col], random_state=42)
